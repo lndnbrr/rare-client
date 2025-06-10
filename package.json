@@ -1,5 +1,6 @@
 {
-  "name": "nextjs-app-router-with-firebase-auth",
+  "name": "rare-client",
+  "author": "justin glotzbach, landon borrego, liban nur",
   "version": "0.1.0",
   "private": true,
   "scripts": {
