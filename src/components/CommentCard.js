@@ -3,22 +3,16 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faGear } from '@fortawesome/free-solid-svg-icons';
 
-export default function CommentCard({ obj }) {
-  const handleEdit = () => {
-    console.log('edited');
-  };
-  const handleDelete = () => {
-    console.log('deleted');
-  };
+export default function CommentCard({ obj, onEditClick, onDelete }) {
   return (
     <div className="border-1 border-white w-1/4 rounded-xl flex flex-col">
       {obj.is_author ? (
         <div className="flex flex-row justify-end m-1">
           <div className="flex">
-            <button type="button" className="size-8" onClick={handleEdit} aria-label="Edit comment">
+            <button type="button" className="size-8" onClick={() => onEditClick(obj)} aria-label="Edit comment">
               <FontAwesomeIcon icon={faGear} className="transition-200 transition-opacity hover:opacity-50 active:opacity-100 w-full h-4/5" />
             </button>
-            <button type="button" className="size-8" onClick={handleDelete} aria-label="Delete comment">
+            <button type="button" className="size-8" onClick={() => onDelete(obj)} aria-label="Delete comment">
               <FontAwesomeIcon icon={faTrashCan} className="transition-200 transition-opacity hover:opacity-50 active:opacity-100 w-full h-4/5" />
             </button>
           </div>
@@ -41,4 +35,6 @@ CommentCard.propTypes = {
     author_full_name: PropTypes.string.isRequired,
     creation_date: PropTypes.string.isRequired,
   }).isRequired,
+  onEditClick: PropTypes.func,
+  onDelete: PropTypes.func,
 };
