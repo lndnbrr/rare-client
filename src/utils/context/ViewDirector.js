@@ -4,6 +4,7 @@ import { useAuth } from '@/utils/context/authContext';
 import Loading from '@/components/Loading';
 import SignIn from '@/components/SignIn';
 import NavBar from '@/components/NavBar';
+// import CommentCard from '@/components/CommentCard';
 
 function ViewDirectorBasedOnUserAuthStatus({ children }) {
   const { user, userLoading, updateUser } = useAuth();
@@ -18,6 +19,7 @@ function ViewDirectorBasedOnUserAuthStatus({ children }) {
     return (
       <>
         <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
+        {/* <div className="container">{'valid' in user ? <CommentCard obj={{ id: '2', author_full_name: 'Johnny Dime', content: 'Patrick Star', creation_date: '02/25/2025 at 08:30 PM', is_author: true }} /> : children}</div> */}
         <div className="container">{'valid' in user ? <RegisterForm user={user} updateUser={updateUser} /> : children}</div>
       </>
     );
