@@ -19,6 +19,7 @@ function ViewDirectorBasedOnUserAuthStatus({ children }) {
     return (
       <>
         <NavBar /> {/* NavBar only visible if user is logged in and is in every view */}
+        {/* The comment below this one is for testing purposes only - JG */}
         {/* <div className="container">{'valid' in user ? <CommentCard obj={{ id: '2', author_full_name: 'Johnny Dime', content: 'Patrick Star', creation_date: '02/25/2025 at 08:30 PM', is_author: true }} /> : children}</div> */}
         <div className="container">{'valid' in user ? <RegisterForm user={user} updateUser={updateUser} /> : children}</div>
       </>
