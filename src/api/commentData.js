@@ -9,7 +9,7 @@ const getHeaders = (uid) => ({
 // CREATE COMMENT
 const createComment = (payload, uid) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/comments.json`, {
+    fetch(`${endpoint}/comments`, {
       method: 'POST',
       headers: getHeaders(uid),
       body: JSON.stringify(payload),
@@ -22,7 +22,7 @@ const createComment = (payload, uid) =>
 // UPDATE COMMENT
 const updateComment = (payload, uid) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/comments/${payload.commentId}.json`, {
+    fetch(`${endpoint}/comments/${payload.commentId}`, {
       method: 'PATCH',
       headers: getHeaders(uid),
       body: JSON.stringify(payload),
@@ -35,7 +35,7 @@ const updateComment = (payload, uid) =>
 // DELETE COMMENT
 const deleteComment = (commentId) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/gifts/${commentId}.json`, {
+    fetch(`${endpoint}/comments/${commentId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
