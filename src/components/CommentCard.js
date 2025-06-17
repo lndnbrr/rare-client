@@ -5,9 +5,9 @@ import { faTrashCan, faGear } from '@fortawesome/free-solid-svg-icons';
 
 export default function CommentCard({ obj, onEditClick, onDelete }) {
   return (
-    <div className="border-1 border-white w-1/4 rounded-xl flex flex-col">
-      {obj.is_author ? (
-        <div className="flex flex-row justify-end m-1">
+    <div className="border-1 border-white rounded-xl flex flex-col">
+      <div className="flex flex-row justify-end m-1 h-[30px]">
+        {obj.is_author ? (
           <div className="flex">
             <button type="button" className="size-8" onClick={() => onEditClick(obj)} aria-label="Edit comment">
               <FontAwesomeIcon icon={faGear} className="transition-200 transition-opacity hover:opacity-50 active:opacity-100 w-full h-4/5" />
@@ -16,8 +16,8 @@ export default function CommentCard({ obj, onEditClick, onDelete }) {
               <FontAwesomeIcon icon={faTrashCan} className="transition-200 transition-opacity hover:opacity-50 active:opacity-100 w-full h-4/5" />
             </button>
           </div>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
 
       <div className="text-center">{obj.content}</div>
       <div className="h-[20px]" />
