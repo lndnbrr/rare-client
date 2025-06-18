@@ -4,28 +4,58 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
 import CommentCard from '../../../../components/CommentCard';
-import { createComment, getCommentsByPostId } from '../../../../api/commentData';
+import { createComment, deleteComment, getCommentsByPostId, updateComment } from '../../../../api/commentData';
 import { useAuth } from '../../../../utils/context/authContext';
+import EditCommentModal from '../../../../components/EditCommentModal';
+import DeleteCommentModal from '../../../../components/DeleteCommentModal';
 
-export default function PostComments({ postObj }) {
+export default function PostComments({ postObj = { id: 1, title: 'fish' } }) {
   const user = useAuth();
   const [comments, setComments] = useState([]);
   const [commentInput, setCommentInput] = useState('');
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [commentBeingEdited, setCommentBeingEdited] = useState(null);
+  const [commentBeingDeleted, setCommentBeingDeleted] = useState(null);
+
   const fetchComments = () => {
     getCommentsByPostId(postObj.id, user.user.fbUser.uid).then(setComments);
   };
+
   useEffect(() => {
     fetchComments();
-  });
-  const onEditClick = () => {
-    console.log('edited');
+  }, []);
+
+  const onEditClick = (comment) => {
+    setCommentBeingEdited(comment);
+    setShowEditModal(true);
   };
-  const onDelete = (e) => {
-    console.log(e.id);
+
+  const onDeleteClick = (comment) => {
+    setCommentBeingDeleted(comment);
+    setShowDeleteModal(true);
   };
+
+  const handleSave = (updatedComment) => {
+    updateComment(updatedComment, user.user.fbUser.uid).then(() => {
+      fetchComments();
+      setShowEditModal(false);
+      setCommentBeingEdited(null);
+    });
+  };
+
+  const handleDelete = (commentId) => {
+    deleteComment(commentId).then(() => {
+      fetchComments();
+      setShowDeleteModal(false);
+      setCommentBeingDeleted(null);
+    });
+  };
+
   const handleChange = (e) => {
     setCommentInput(e.target.value);
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const commentObj = {
@@ -37,6 +67,7 @@ export default function PostComments({ postObj }) {
       setCommentInput('');
     });
   };
+
   return (
     <>
       <div className="flex flex-col items-center">
@@ -57,7 +88,6 @@ export default function PostComments({ postObj }) {
                 }
               }}
             />
-            <p className="opacity-50">Shift + Enter for New Line</p>
           </Form.Group>
           <div className="flex justify-end">
             <Button type="submit" onClick={handleSubmit}>
@@ -68,12 +98,15 @@ export default function PostComments({ postObj }) {
       </div>
       <div className="w-50 mx-auto grid grid-cols-2 gap-2">
         {comments.map((comment) => (
-          <CommentCard key={comment.id} obj={comment} onEditClick={onEditClick} onDelete={onDelete} />
+          <CommentCard key={comment.id} obj={comment} onEditClick={onEditClick} onDeleteClick={onDeleteClick} />
         ))}
       </div>
+      <EditCommentModal show={showEditModal} onClose={() => setShowEditModal(false)} onSave={handleSave} commentObj={commentBeingEdited} />
+      <DeleteCommentModal show={showDeleteModal} onClose={() => setShowDeleteModal(false)} onDelete={handleDelete} commentObj={commentBeingDeleted} />
     </>
   );
 }
+
 PostComments.propTypes = {
   postObj: PropTypes.shape({
     id: PropTypes.number.isRequired,

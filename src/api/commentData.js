@@ -22,12 +22,17 @@ const createComment = (payload, uid) =>
 // UPDATE COMMENT
 const updateComment = (payload, uid) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/comments/${payload.commentId}`, {
+    fetch(`${endpoint}/comments/${payload.id}`, {
       method: 'PATCH',
       headers: getHeaders(uid),
       body: JSON.stringify(payload),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 204) {
+          return { success: true };
+        }
+        return response.json();
+      })
       .then((data) => resolve(data))
       .catch(reject);
   });
