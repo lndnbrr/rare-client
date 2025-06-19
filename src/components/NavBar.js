@@ -19,19 +19,19 @@ export default function NavBar() {
             <Link className="nav-link" href="/">
               Home
             </Link>
-            <Link className="nav-link" href="/">
+            <Link className="nav-link" href="/posts">
               All Posts
             </Link>
-            <Link className="nav-link" href="/">
+            <Link className="nav-link" href="/posts">
               My Posts
             </Link>
             <Link className="nav-link" href="/users">
               User Manager
             </Link>
-            <Link className="nav-link" href="/">
+            <Link className="nav-link" href="/categories">
               Category Manager
             </Link>
-            <Link className="nav-link" href="/">
+            <Link className="nav-link" href="/tags">
               Tag Manager
             </Link>
           </Nav>
