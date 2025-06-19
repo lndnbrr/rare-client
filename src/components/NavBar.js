@@ -25,6 +25,9 @@ export default function NavBar() {
             <Link className="nav-link" href="/">
               My Posts
             </Link>
+            <Link className="nav-link" href="/users">
+              User Manager
+            </Link>
             <Link className="nav-link" href="/">
               Category Manager
             </Link>
