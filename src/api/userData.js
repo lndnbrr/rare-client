@@ -14,6 +14,19 @@ const getAllUsers = () =>
       .catch(reject);
   });
 
+const getSingleUser = (user) =>
+  new Promise((resolve, reject) => {
+    fetch(`${endpoint}/users/${user.id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => resolve(data))
+      .catch(reject);
+  });
+
 const updateUser = (payload) =>
   new Promise((resolve, reject) => {
     fetch(`${endpoint}/users/${payload.id}`, {
@@ -41,4 +54,4 @@ const deleteUser = (id) =>
       .catch(reject);
   });
 
-export { getAllUsers, updateUser, deleteUser };
+export { getAllUsers, getSingleUser, updateUser, deleteUser };

@@ -60,6 +60,7 @@ RegisterForm.propTypes = {
     bio: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     active: PropTypes.string.isRequired,
+    profile_image_url: PropTypes.string.isRequired,
     is_staff: PropTypes.string.isRequired,
     uid: PropTypes.string.isRequired,
   }).isRequired,
