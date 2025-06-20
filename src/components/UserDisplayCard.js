@@ -63,5 +63,5 @@ UserCard.propTypes = {
     email: PropTypes.string.isRequired,
     active: PropTypes.string.isRequired,
     is_staff: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
