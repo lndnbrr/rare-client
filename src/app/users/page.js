@@ -10,10 +10,14 @@ export default function UsersManagePage() {
     getAllUsers().then((data) => setUsers(data));
   }, []);
 
+  const getAllTheUsers = () => {
+    getAllUsers().then((data) => setUsers(data));
+  };
+
   return (
     <div className="d-flex flex-column justify-content-center">
       {users.map((user) => (
-        <UserCard userObj={user} />
+        <UserCard userObj={user} onUpdate={getAllTheUsers} />
       ))}
     </div>
   );

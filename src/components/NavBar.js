@@ -42,7 +42,7 @@ export default function NavBar() {
             </Link>
           </Nav>
 
-          <Button variant="danger" onClick={signOut}>
+          <Button variant="danger" onClick={signOut} href="/">
             Sign Out
           </Button>
         </Navbar.Collapse>
