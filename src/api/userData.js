@@ -14,9 +14,9 @@ const getAllUsers = () =>
       .catch(reject);
   });
 
-const getSingleUser = (user) =>
+const getSingleUser = (id) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/users/${user.id}`, {
+    fetch(`${endpoint}/users/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -27,9 +27,9 @@ const getSingleUser = (user) =>
       .catch(reject);
   });
 
-const updateUser = (payload) =>
+const updateToUser = (payload, id) =>
   new Promise((resolve, reject) => {
-    fetch(`${endpoint}/users/${payload.id}`, {
+    fetch(`${endpoint}/users/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -54,4 +54,4 @@ const deleteUser = (id) =>
       .catch(reject);
   });
 
-export { getAllUsers, getSingleUser, updateUser, deleteUser };
+export { getAllUsers, getSingleUser, updateToUser, deleteUser };

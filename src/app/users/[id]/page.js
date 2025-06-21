@@ -2,12 +2,12 @@
 
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Image, ListGroup, Row } from 'react-bootstrap';
 import { getSingleUser } from '@/api/userData';
 
 export default function UserProfilePage({ params }) {
   const [user, setUser] = useState({});
-  const id = params;
+  const { id } = params;
 
   useEffect(() => {
     getSingleUser(id).then((data) => setUser(data));
@@ -39,6 +39,9 @@ export default function UserProfilePage({ params }) {
           <ListGroup.Item>Profile Created: {user.created}</ListGroup.Item>
           <ListGroup.Item>{staff()}</ListGroup.Item>
         </ListGroup>
+        <Button type="button" variant="warning" href={`/users/update/${user.id}`}>
+          Edit Me!
+        </Button>
       </Card>
     </>
   );
