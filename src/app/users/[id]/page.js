@@ -22,7 +22,6 @@ export default function UserProfilePage({ params }) {
 
   return (
     <>
-      <div> Hey there, I am user {user.id} </div>
       <Container>
         <Row>
           <Col xs={6} md={4}>

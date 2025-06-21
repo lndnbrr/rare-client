@@ -26,7 +26,7 @@ function RegisterForm({ user, updateUser }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (user) {
+    if (user.id) {
       updateToUser(formData, user.id).then(() => router.push(`/users/${user.id}`));
     } else {
       registerUser(formData).then(() => updateUser(user.uid));
