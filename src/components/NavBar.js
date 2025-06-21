@@ -4,8 +4,11 @@ import Link from 'next/link';
 import { Navbar, Container, Nav, Button } from 'react-bootstrap';
 import Image from 'next/image';
 import { signOut } from '../utils/auth';
+import { useAuth } from '../utils/context/authContext';
 
 export default function NavBar() {
+  const { user } = useAuth();
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
@@ -33,6 +36,9 @@ export default function NavBar() {
             </Link>
             <Link className="nav-link" href="/tags">
               Tag Manager
+            </Link>
+            <Link className="nav-link" href={`/users/${user.id}`}>
+              My Profile
             </Link>
           </Nav>
 
