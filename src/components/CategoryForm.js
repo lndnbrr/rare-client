@@ -20,7 +20,7 @@ export default function CategoryForm({ onUpdate }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Card className="create-cat-form">
+      <Card className="create-category-form">
         Create a New Category
         <input className="form-control" name="label" onChange={handleChange} />
         <Button type="submit">Submit</Button>

@@ -1,13 +1,15 @@
 'use client';
 
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'react-bootstrap';
-import CommentCard from '../../../../components/CommentCard';
-import { createComment, deleteComment, getCommentsByPostId, updateComment } from '../../../../api/commentData';
-import { useAuth } from '../../../../utils/context/authContext';
-import EditCommentModal from '../../../../components/EditCommentModal';
-import DeleteCommentModal from '../../../../components/DeleteCommentModal';
+import CommentCard from '../../../components/CommentCard';
+import { createComment, deleteComment, getCommentsByPostId, updateComment } from '../../../api/commentData';
+import { useAuth } from '../../../utils/context/authContext';
+import EditCommentModal from '../../../components/EditCommentModal';
+import DeleteCommentModal from '../../../components/DeleteCommentModal';
 
 export default function PostComments({ postObj = { id: 1, title: 'fish' } }) {
   const user = useAuth();
