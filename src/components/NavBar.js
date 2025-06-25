@@ -34,11 +34,12 @@ export default function NavBar() {
             <Link className="nav-link" href="/categories">
               Category Manager
             </Link>
-            <Link className="nav-link" href="/tags">
-              Tag Manager
-            </Link>
+
             <Link className="nav-link" href={`/users/${user.id}`}>
               My Profile
+            </Link>
+            <Link className="nav-link" href="/posts/comments">
+              Comments
             </Link>
           </Nav>
 

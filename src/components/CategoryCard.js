@@ -10,6 +10,7 @@ import { deleteCategory, updateCategory } from '../api/categoryData';
 
 export default function CategoryCard({ cat, onUpdate }) {
   const [label, setLabel] = useState(cat.label);
+  console.log(label);
   const [showModal, setShowModal] = useState(false);
   const { user } = useAuth();
 
@@ -32,7 +33,7 @@ export default function CategoryCard({ cat, onUpdate }) {
   };
 
   const handleDelete = () => {
-    if (window.confirm('Are you sure you want to delete this category?')) {
+    if (window.confirm('Are you sure you want to delete this cat?')) {
       deleteCategory(cat.id)
         .then(() => {
           onUpdate();
